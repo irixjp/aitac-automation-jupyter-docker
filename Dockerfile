@@ -20,7 +20,7 @@ ENV LANG="ja_JP.UTF-8" \
     LC_ALL="ja_JP.UTF-8"
 
 # install base packages
-RUN yum install -y sudo git vim wget which gcc unzip && \
+RUN yum install -y sudo git vim wget which gcc gcc-c++ unzip && \
     yum install -y python2-virtualenv python2-virtualenvwrapper && \
     yum install -y python36u python36u-libs python36u-devel python36u-pip && \
     yum clean all
@@ -105,14 +105,14 @@ RUN mkdir -p $HOME/.ipython/profile_default/startup && \
 ### Handson Environments
 ####################
 USER root
-RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 aws yq \
+RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 awscli yq \
            pandas matplotlib numpy seaborn scipy scikit-learn \
            scikit-image sympy cython patsy statsmodels cloudpickle dill bokeh h5py \
            yamllint
 
 RUN yum install -y iproute net-tools bind-utils jq openssh-server openssh-clients \
                    ipa-gothic-fonts ipa-mincho-fonts ipa-pgothic-fonts ipa-pmincho-fonts \
-                   tree && \
+                   tree nano && \
     yum clean all && \
     /usr/bin/ssh-keygen -t rsa     -f /etc/ssh/ssh_host_rsa_key     -C '' -N '' && \
     /usr/bin/ssh-keygen -t ecdsa   -f /etc/ssh/ssh_host_ecdsa_key   -C '' -N '' && \
