@@ -105,18 +105,19 @@ RUN mkdir -p $HOME/.ipython/profile_default/startup && \
 ### Handson Environments
 ####################
 USER root
-RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 awscli yq \
-           pandas matplotlib numpy seaborn scipy scikit-learn \
-           scikit-image sympy cython patsy statsmodels cloudpickle dill bokeh h5py \
-           yamllint
 
 RUN yum install -y iproute net-tools bind-utils jq openssh-server openssh-clients \
                    ipa-gothic-fonts ipa-mincho-fonts ipa-pgothic-fonts ipa-pmincho-fonts \
-                   tree nano && \
+                   tree nano graphviz && \
     yum clean all && \
     /usr/bin/ssh-keygen -t rsa     -f /etc/ssh/ssh_host_rsa_key     -C '' -N '' && \
     /usr/bin/ssh-keygen -t ecdsa   -f /etc/ssh/ssh_host_ecdsa_key   -C '' -N '' && \
     /usr/bin/ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -C '' -N ''
+
+RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 awscli yq \
+           pandas matplotlib numpy seaborn scipy scikit-learn \
+           scikit-image sympy cython patsy statsmodels cloudpickle dill bokeh h5py \
+           yamllint ansible-inventory-grapher
 
 USER $NB_USER
 ENV SHELL=/bin/bash
