@@ -54,12 +54,14 @@ RUN pip3.6 install jupyter_nbextensions_configurator ipywidgets six && \
     pip3.6 install https://github.com/NII-cloud-operation/Jupyter-LC_run_through/tarball/master && \
     pip3.6 install git+https://github.com/NII-cloud-operation/Jupyter-multi_outputs && \
     pip3.6 install git+https://github.com/NII-cloud-operation/Jupyter-LC_index.git && \
-    pip3.6 install bash_kernel
+    pip3.6 install bash_kernel && \
+    pip3.6 install ansible-kernel
 
 USER $NB_USER
 RUN mkdir -p $HOME/.local/share && \
     ipython kernel install --user && \
     python3.6 -m bash_kernel.install --user && \
+    python3.6 -m ansible_kernel.install --user && \ 
     jupyter contrib nbextension install --user && \
     jupyter kernelspec install /tmp/kernels/python3-wrapper --user && \
     jupyter kernelspec install /tmp/kernels/bash-wrapper --user && \
@@ -101,6 +103,10 @@ RUN mkdir -p $HOME/.jupyter/custom/ && \
 RUN mkdir -p $HOME/.ipython/profile_default/startup && \
     cp /tmp/10-custom-get_ipython_system.py $HOME/.ipython/profile_default/startup/
 
+## copy credential template for openstack/aws
+RUN cp -r /tmp/.aws /tmp/.config $HOME/
+
+
 ####################
 ### Handson Environments
 ####################
@@ -117,7 +123,8 @@ RUN yum install -y iproute net-tools bind-utils jq openssh-server openssh-client
 RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 awscli yq \
            pandas matplotlib numpy seaborn scipy scikit-learn \
            scikit-image sympy cython patsy statsmodels cloudpickle dill bokeh h5py \
-           yamllint ansible-inventory-grapher
+           yamllint ansible-inventory-grapher \
+           shade python-openstackclient
 
 USER $NB_USER
 ENV SHELL=/bin/bash
