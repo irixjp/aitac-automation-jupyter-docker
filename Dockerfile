@@ -124,7 +124,8 @@ RUN pip3.6 install ansible ansible-lint ansible-tower-cli boto boto3 awscli yq \
            pandas matplotlib numpy seaborn scipy scikit-learn \
            scikit-image sympy cython patsy statsmodels cloudpickle dill bokeh h5py \
            yamllint ansible-inventory-grapher \
-           shade python-openstackclient
+           shade python-openstackclient \
+           testinfra molecule
 
 USER $NB_USER
 ENV SHELL=/bin/bash
