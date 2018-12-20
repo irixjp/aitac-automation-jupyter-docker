@@ -4,7 +4,7 @@
 ## 使い方
 
 ```bash
-$ docker run -d -p 8888:8888 --name aitac -e PASSWORD=password -v irixjp/aitac-automation-jupyter:latest
+$ docker run -d -p 8888:8888 --name aitac -e PASSWORD=password irixjp/aitac-automation-jupyter:latest
 ```
 
 - アクセス方法 http://<サーバーのIP>:8888/
