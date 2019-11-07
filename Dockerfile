@@ -20,7 +20,9 @@ RUN pip3 install -U pip setuptools && \
 
 RUN jupyter labextension install -y @jupyterlab/toc
 
-RUN useradd jupyter -m -d /jupyter
+RUN useradd jupyter -m -d /jupyter && \
+    mkdir -p /notebooks && \
+    chown -R jupyter:jupyter /notebooks
 USER jupyter
 WORKDIR /jupyter
 
@@ -33,8 +35,7 @@ RUN openssl req -x509 -nodes -newkey rsa:2048 \
     -keyout ${JP_CONF_PATH:?}/mycert.key \
     -out    ${JP_CONF_PATH:?}/mycert.pem
 
-RUN mkdir -p /notebooks && \
-    echo "alias ls='ls --color'" >> /jupyter/.bashrc  && \
+RUN echo "alias ls='ls --color'" >> /jupyter/.bashrc  && \
     echo "alias ll='ls -alF --color'" >> /jupyter/.bashrc
 
 EXPOSE 8888
