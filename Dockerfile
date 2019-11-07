@@ -33,7 +33,8 @@ RUN openssl req -x509 -nodes -newkey rsa:2048 \
     -keyout ${JP_CONF_PATH:?}/mycert.key \
     -out    ${JP_CONF_PATH:?}/mycert.pem
 
-RUN echo "alias ls='ls --color'" >> /jupyter/.bashrc  && \
+RUN mkdir -p /notebooks && \
+    echo "alias ls='ls --color'" >> /jupyter/.bashrc  && \
     echo "alias ll='ls -alF --color'" >> /jupyter/.bashrc
 
 EXPOSE 8888
