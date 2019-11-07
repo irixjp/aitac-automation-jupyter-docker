@@ -25,6 +25,7 @@ USER jupyter
 WORKDIR /jupyter
 
 COPY --chown=jupyter:jupyter assets/.jupyter /jupyter/.jupyter
+COPY --chown=jupyter:jupyter assets/.ansible.cfg /jupyter/.ansible.cfg
 
 RUN openssl req -x509 -nodes -newkey rsa:2048 \
     -subj '/C=JP/ST=Tokyo/L=Tokyo/O=Example Ltd./OU=Web/CN=localhost' \
