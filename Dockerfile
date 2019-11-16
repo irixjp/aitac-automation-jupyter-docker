@@ -5,7 +5,7 @@ LABEL maintainer "@irix_jp"
 ENV JP_CONF_PATH /jupyter/.jupyter
 
 RUN dnf update -y && \
-    dnf install -y glibc-all-langpacks gcc make rpm-build git sudo which tree && \
+    dnf install -y glibc-all-langpacks gcc make rpm-build git sudo which tree jq && \
     dnf module install -y python36:3.6/common && \
     dnf module install -y python36:3.6/build && \
     dnf module install -y nodejs:10/common && \
@@ -13,7 +13,7 @@ RUN dnf update -y && \
     dnf clean all
 
 RUN pip3 install -U pip setuptools && \
-    pip install ansible ansible-lint yamllint boto boto3 awscli && \
+    pip install ansible ansible-lint yamllint boto boto3 awscli yq && \
     pip install jupyterlab bash_kernel ansible-kernel && \
     python -m bash_kernel.install && \
     python -m ansible_kernel.install
