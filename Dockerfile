@@ -6,9 +6,9 @@ ENV JP_CONF_PATH /jupyter/.jupyter
 
 RUN dnf update -y && \
     dnf install -y glibc-all-langpacks gcc make rpm-build git sudo which tree jq && \
-    dnf module install -y python36:3.6/common && \
-    dnf module install -y python36:3.6/build && \
-    dnf module install -y nodejs:10/common && \
+    dnf module install -y --nogpgcheck python36:3.6/common && \
+    dnf module install -y --nogpgcheck python36:3.6/build && \
+    dnf module install -y --nogpgcheck nodejs:10/common && \
     alternatives --set python /usr/bin/python3 && \
     dnf clean all
 
