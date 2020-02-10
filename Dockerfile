@@ -19,6 +19,8 @@ RUN pip3 install -U pip setuptools && \
     python -m bash_kernel.install && \
     python -m ansible_kernel.install
 
+RUN pip install mglearn matplotlib sklearn numpy pandas openpyxl xlrd
+
 RUN jupyter labextension install -y @jupyterlab/toc
 
 RUN useradd jupyter -m -d /jupyter && \
