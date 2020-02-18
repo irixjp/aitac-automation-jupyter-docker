@@ -18,7 +18,7 @@ RUN pip3 install -U pip setuptools && \
     pip install jupyterlab bash_kernel ansible-kernel && \
     python -m bash_kernel.install && \
     python -m ansible_kernel.install && \
-    pip install mglearn matplotlib scikit-learn numpy pandas openpyxl xlrd seaborn && \
+    pip install mglearn matplotlib scikit-learn numpy pandas openpyxl xlrd seaborn plotly xgboost && \
     rm -rf ~/.cache/pip
 
 RUN mkdir ~/temp && cd ~/temp && \
