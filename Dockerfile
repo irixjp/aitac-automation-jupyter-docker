@@ -26,7 +26,8 @@ RUN mkdir ~/temp && cd ~/temp && \
     sh bootstrap && ./configure && make && make install && \
     cd ~/ && rm -rf ~/temp
 
-RUN jupyter labextension install -y @jupyterlab/toc
+RUN jupyter labextension install -y @jupyterlab/toc && \
+    jupyter labextension install -y @jupyter-widgets/jupyterlab-manager
 
 RUN useradd jupyter -m -d /jupyter && \
     mkdir -p /notebooks && \
