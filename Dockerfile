@@ -9,12 +9,12 @@ RUN dnf update -y && \
     dnf install -y epel-release && dnf install -y czmq-devel && \
     dnf module install -y python36:3.6/common && \
     dnf module install -y python36:3.6/build && \
-    dnf module install -y nodejs:10/common && \
+    dnf module install -y nodejs:12/common && \
     alternatives --set python /usr/bin/python3 && \
     dnf clean all
 
 RUN pip3 install -U pip setuptools && \
-    pip install ansible ansible-lint yamllint boto boto3 awscli yq && \
+    pip install ansible==2.9.19 ansible-lint yamllint boto boto3 awscli yq && \
     pip install jupyterlab bash_kernel ansible-kernel && \
     python -m bash_kernel.install && \
     python -m ansible_kernel.install && \
