@@ -39,12 +39,6 @@ WORKDIR /jupyter
 COPY --chown=jupyter:jupyter assets/.jupyter /jupyter/.jupyter
 COPY --chown=jupyter:jupyter assets/.ansible.cfg /jupyter/.ansible.cfg
 
-RUN openssl req -x509 -nodes -newkey rsa:2048 \
-    -subj '/C=JP/ST=Tokyo/L=Tokyo/O=Example Ltd./OU=Web/CN=localhost' \
-    -days 36500 \
-    -keyout ${JP_CONF_PATH:?}/mycert.key \
-    -out    ${JP_CONF_PATH:?}/mycert.pem
-
 RUN ros setup && ros install sbcl --without-install && ros config set dynamic-space-size 4gb && \
     ros install common-lisp-jupyter && \
     ros -e '(require :common-lisp-jupyter)' -e '(cl-jupyter:install)'
@@ -56,4 +50,4 @@ RUN echo "alias ls='ls --color'" >> /jupyter/.bashrc  && \
     echo 'export PATH=$HOME/.roswell/bin:$PATH' >> /jupyter/.bashrc
 
 EXPOSE 8888
-CMD ["jupyter", "lab", "--ip", "0.0.0.0", "--port", "8888", "--no-browser", "--certfile", "/jupyter/.jupyter/mycert.pem", "--keyfile", "/jupyter/.jupyter/mycert.key"]
+CMD ["jupyter", "lab", "--ip", "0.0.0.0", "--port", "8888", "--no-browser"]
