@@ -15,9 +15,8 @@ RUN dnf update -y && \
 
 RUN pip3 install -U pip setuptools && \
     pip install ansible==2.9.19 ansible-lint yamllint boto boto3 awscli yq && \
-    pip install jupyterlab bash_kernel ansible-kernel && \
+    pip install jupyterlab bash_kernel && \
     python -m bash_kernel.install && \
-    python -m ansible_kernel.install && \
     pip install mglearn matplotlib plotly scikit-learn numpy pandas openpyxl xlrd seaborn plotly xgboost tensorflow keras lightgbm pandas_datareader bs4 tqdm hyperopt tensorboard && \
     rm -rf ~/.cache/pip
 
