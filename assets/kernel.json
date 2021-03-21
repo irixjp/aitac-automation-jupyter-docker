@@ -1,1 +1,0 @@
-{"argv":["/usr/local/bin/ros","--eval","(ql:quickload :common-lisp-jupyter)","--eval","(jupyter:run-kernel 'common-lisp-jupyter:kernel #\"{connection_file}\")"],"display_name":"Common Lisp","language":"common-lisp"}
