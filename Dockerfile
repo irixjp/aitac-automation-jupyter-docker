@@ -7,8 +7,8 @@ ENV JP_CONF_PATH /jupyter/.jupyter
 RUN dnf update -y && \
     dnf install -y glibc-all-langpacks git sudo which tree jq && \
     dnf install -y epel-release && dnf install -y sshpass && \
-    dnf module install -y python36:3.6/common && \
-    dnf module install -y python36:3.6/build && \
+    dnf module install -y python38:3.8/common && \
+    dnf module install -y python38:3.8/build && \
     dnf module install -y nodejs:12/common && \
     alternatives --set python /usr/bin/python3 && \
     dnf clean all
