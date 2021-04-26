@@ -14,7 +14,7 @@ RUN dnf update -y && \
     dnf clean all
 
 RUN pip3 install -U pip setuptools && \
-    pip install ansible==2.9.19 ansible-lint yamllint boto boto3 awscli yq && \
+    pip install ansible==2.9.20 ansible-lint yamllint boto boto3 awscli yq && \
     pip install jupyterlab && \
     rm -rf ~/.cache/pip
 
